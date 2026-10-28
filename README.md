@@ -8,6 +8,18 @@ Vencord, BetterDiscord и отдельная фоновая программа �
 
 ## Установка
 
+### Одной командой PowerShell
+
+Полностью закройте Discord через значок возле часов → **Quit Discord**, затем вставьте в PowerShell:
+
+```powershell
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1')))
+```
+
+Команда скачает последний релиз, проверит SHA256, распакует его в `%LOCALAPPDATA%\DiscordTeamSpeakSounds\packages` и применит патч. В конце будет показан путь к `Restore.cmd`. При открытом Discord установка остановится с просьбой закрыть его. После установки откройте Discord обычным способом. Этой же командой можно повторно применить патч после обновления Discord.
+
+### Вручную
+
 1. Нажмите **Code → Download ZIP** и распакуйте архив целиком.
 2. Полностью закройте Discord через его значок возле часов: **Quit Discord**.
 3. Запустите `Apply.cmd` двойным щелчком.

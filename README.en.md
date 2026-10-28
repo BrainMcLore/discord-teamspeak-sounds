@@ -8,6 +8,18 @@ Vencord, BetterDiscord, and a separate background application are not required. 
 
 ## Installation
 
+### One PowerShell command
+
+Fully quit Discord through its system tray icon → **Quit Discord**, then paste this into PowerShell:
+
+```powershell
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1')))
+```
+
+The command downloads the latest release, verifies its SHA256 checksum, extracts it into `%LOCALAPPDATA%\DiscordTeamSpeakSounds\packages`, and applies the patch. It prints the path to `Restore.cmd`. If Discord is running, installation stops and asks you to quit it. Start Discord as usual afterward. Use the same command to reapply the patch after Discord updates.
+
+### Manual installation
+
 1. Click **Code → Download ZIP** and extract the entire archive.
 2. Fully quit Discord using its system tray icon: **Quit Discord**.
 3. Double-click `Apply.cmd`.
