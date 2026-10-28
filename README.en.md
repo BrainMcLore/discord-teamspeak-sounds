@@ -15,102 +15,58 @@
 
 [Русский](README.md) | **English** | [Українська](README.uk.md)
 
-A Windows script that replaces Discord's microphone and voice channel sounds with classic TeamSpeak 3 sounds. Apply it manually and run it again after Discord updates.
-
-Vencord, BetterDiscord, and a separate background application are not required. A small patch runs inside Discord's existing process.
-
-## 🎧 Launcher
-
-**v3.0 SoundSpace:** a redesigned card-based interface and original app icon. The live shared workshop lets users publish packs directly from the launcher. Browse real user packs, search titles/authors, filter categories, preview and download.
-
-Sign in with GitHub or email and password. Email accounts must verify their address through Firebase. Sign-in and registration have separate screens; password reset and resend verification are available. Legacy username sign-in preserves access to existing accounts and packs.
-
-**My uploads** lets owners delete their packs after confirmation. Ownership is enforced by the server. Cloud limits: 8 MB per pack, 64 MB per account and 512 MB for the shared test catalog. The server address is already configured; users do not need their own Cloudflare account.
-
-Download **[SoundSpace Setup.exe](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest/download/SoundSpace-Setup-v3.0.1.exe)** and run it. The wizard offers an installation folder and an optional desktop shortcut. Requires Windows with .NET Framework 4.8.
-
-- **TeamSpeak Female**, **TeamSpeak Male**, and **Classic Clicks** presets.
-- Choose your own WAV/MP3 for each of seven events and preview it before applying.
-- Uncheck an event to keep Discord's original sound.
-- Import/export `.dspack` files and retain your selections between sessions.
-- Workshop: live user catalog, in-app publication and SHA256-verified downloads.
-- Russian, English, and Ukrainian interface.
-
-Download and launch with one PowerShell command:
-
-```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?setup=4')))
-```
-
-The launcher can stay open alongside Discord. Fully quit Discord before Apply or Restore, then start Discord again. The launcher can be closed afterward; it is not needed for sound playback.
-
-Packs contain metadata and audio only, up to 10 MB per local sound. Cloud publication requires an archive of 8 MB or less. The shared workshop uses Cloudflare.
-
-To build from source, run `Build-Launcher.ps1` or `Launcher.cmd`. Releases include the compiled EXE. Settings and the local library are stored in `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
+SoundSpace is a Windows app for customizing Discord sounds: classic TeamSpeak 3, your own WAV/MP3 files and community packs. Vencord and BetterDiscord are not required. Close the launcher after applying your sounds.
 
 ## 🚀 Installation
 
-### With PowerShell
+1. **[Download the v3.0.1 installer](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/download/v3.0.1/SoundSpace-Setup-v3.0.1.exe)**.
+2. Choose a folder and optionally enable **Create a desktop shortcut**.
+3. Open SoundSpace from the Start menu or desktop.
+
+Requires Windows 10/11 and .NET Framework 4.8. Installs for the current user.
+
+### One PowerShell command
 
 ```powershell
 & ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?setup=4')))
 ```
 
-The command downloads the latest EXE, verifies SHA256 and opens the installation wizard. Choose a folder and optionally enable the desktop shortcut. Fully quit Discord before applying sounds; installing the launcher does not require closing Discord.
+Downloads the installer, verifies SHA256 and opens the wizard with folder and shortcut options.
 
-### Portable version
+The **[portable ZIP v3.0.0](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/tag/v3.0.0)** is available separately. Extract everything and open `Discord-Sound-Launcher.exe`. Add `-Portable` to the PowerShell command to download it; `-Apply` applies classic sounds without the launcher.
 
-[ZIP without installation — v3.0.0](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/tag/v3.0.0): extract everything and open `Discord-Sound-Launcher.exe`. Add `-Portable` to the PowerShell command for this mode. Use `-Apply` to apply classic sounds without the launcher after fully quitting Discord.
+## 🎧 Your sounds
 
-## ↩️ Restore and check status
+- Choose **TeamSpeak Female**, **TeamSpeak Male**, **Classic Clicks**, or your own WAV/MP3 files.
+- Preview before applying. Unchecked events keep their original Discord sound.
+- Export a collection as `.dspack` or import an existing pack.
+- Fully quit Discord from its tray icon, select **Apply to Discord**, then restart Discord.
 
-- **`Restore.cmd`** restores the original loader. Fully quit Discord first, run the restore script, then reopen Discord.
-- **`Status.cmd`** shows whether the patch is installed and displays its latest log entries.
+Seven events: microphone mute/unmute, headphones deafen/undeafen, participant join/leave and your own disconnect. Enable the corresponding notification sounds in Discord. Local WAV/MP3 files: up to 10 MB each. Interface languages: RU / EN / UK.
 
-`TS-SOUNDS-HIT:mute`, `unmute`, `user_join`, `user_leave`, or `disconnect` means a sound request was intercepted and replaced. A `ready` entry confirms that the handler loaded, but does not by itself confirm playback.
+## 🌍 Workshop
 
-## 🔊 Sounds
+Use **Discover** to search titles or authors, filter categories, preview and download packs. The shared server is already configured.
 
-| Discord event | Original TeamSpeak 3 file |
-| --- | --- |
-| Mute microphone | `mic_muted.wav` |
-| Unmute microphone | `mic_activated.wav` |
-| Deafen using the headphones button | `sound_muted.wav` — Sound muted |
-| Undeafen using the headphones button | `sound_resumed.wav` — Sound resumed |
-| Connect / participant joins | `neutral_switched_tocurrentchannel.wav` |
-| Participant leaves | `neutral_switched_awayfromcurrentchannel.wav` |
-| Disconnect yourself | `disconnected.wav` |
+Sign in with **GitHub** or **email + password** to publish. Email verification is required; password reset and verification resend are available on the sign-in screen. Build a collection and choose **Share a pack**. Delete your own publications under **My uploads**.
 
-Discord uses the same sound for your own connection and another participant joining. Standard, Halloween, and winter resource variants are supported: 21 addresses in total. The corresponding sounds must be enabled in Discord's notification settings.
+Cloud limits: **8 MB per pack**, **64 MB per account**, **512 MB for the shared catalog**. Only share audio you have permission to distribute.
 
-## ⚙️ How it works
+## ↩️ Restore and uninstall
 
-`Manage-Sounds.ps1` finds the latest installed Discord version in the standard user directory or `%ProgramData%\%USERNAME%\Discord`. Before changing `index.js`, it creates an `index.js.ts-original` backup. Reapplying the patch preserves that original backup. The script refuses to overwrite an unrecognized loader.
+Fully quit Discord and select **Restore Discord sounds** in the launcher to restore defaults. Diagnostics are available in Settings. Reapply after Discord updates if needed.
 
-During application, Discord's public page and its `web.*.js` bundle are used to update audio filenames. If they cannot be retrieved, the bundled list is used instead. This download does not use authentication.
+Uninstall through **Windows Settings → Apps → SoundSpace**. Restore Discord sounds first if you also want to remove the patch. Your library is stored in `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
 
-When Discord starts, the patch replaces requests for the specified audio resources with local WAV files. Other requests pass through to the original handler. The script does not access tokens or passwords.
+## ⚙️ Source code
 
-The CMD files allow PowerShell script execution only for the launched process; they do not permanently change Windows execution policy. Administrator rights are usually unnecessary. Restoring disables the patch while leaving the backup and inactive files next to the loader.
+`Build-Launcher.ps1` builds the launcher; `Build-Installer.ps1` builds the installer using Inno Setup. `cloud-workshop/` contains the backend; `presets/` contains bundled packs. The installer includes the compiled EXE.
 
-## ✅ Compatibility and verification
+The patch backs up Discord's loader and replaces sound-resource requests with local audio. Discord updates may require patch updates.
 
-For the headphones button, exact WAV replacement and standard and seasonal addresses have been verified. Handler checks cover all 21 addresses. A real button press with this new version has not been separately tested.
+## 🎵 TeamSpeak audio
 
-Tested with Discord **1.0.9265** on Windows on October 28, 2026:
-
-- starting the client with the patch;
-- intercepting actual mute, unmute, user_join, and user_leave requests;
-- reapplying the patch and restoring the loader;
-- exact WAV byte matches for all 15 addresses;
-- replacing `media.src` and `play`, while passing unrelated requests through unchanged;
-- JavaScript and PowerShell syntax, and the structure of all five WAV files.
-
-A real `disconnect` event and audible playback on a specific output device have not been separately confirmed. Future changes to Discord's playback mechanism may require updating the patch itself rather than simply rerunning `Apply.cmd`.
-
-## 🎵 Audio source
-
-The original WAV files were extracted from the `sound/default` package of the official [TeamSpeak 3 Client 3.6.2](https://www.teamspeak.com/en/downloads/#ts3client), without installing or running TeamSpeak. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Bundled audio comes from the official TeamSpeak 3 Client 3.6.2. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## 🧡 Support the project
 
