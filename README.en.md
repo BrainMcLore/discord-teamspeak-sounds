@@ -1,4 +1,17 @@
-# TeamSpeak sounds for Discord
+<div align="center">
+  <img src="launcher/assets/soundspace.png" alt="SoundSpace" width="112" height="112">
+  <h1>SoundSpace</h1>
+  <p><strong>Your Discord. Your sounds.</strong></p>
+  <p>TeamSpeak sounds · Custom WAV / MP3 · Community Workshop</p>
+  <p>
+    <a href="https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest"><img src="https://img.shields.io/github/v/release/BrainMcLore/discord-teamspeak-sounds?style=flat-square&amp;color=ff6500&amp;label=SoundSpace" alt="Latest release"></a>
+    <img src="https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=flat-square" alt="Windows 10 / 11">
+    <img src="https://img.shields.io/badge/languages-RU%20%C2%B7%20EN%20%C2%B7%20UK-5865F2?style=flat-square" alt="RU / EN / UK">
+  </p>
+  <p><a href="https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest"><strong>⬇️ Download SoundSpace</strong></a> · <a href="CHANGELOG.md">📋 Changelog</a> · <a href="https://donatello.to/loxire">🧡 Support the project</a></p>
+</div>
+
+---
 
 [Русский](README.md) | **English** | [Українська](README.uk.md)
 
@@ -6,7 +19,7 @@ A Windows script that replaces Discord's microphone and voice channel sounds wit
 
 Vencord, BetterDiscord, and a separate background application are not required. A small patch runs inside Discord's existing process.
 
-## Launcher
+## 🎧 Launcher
 
 **v3.0 SoundSpace:** a redesigned card-based interface and original app icon. The live shared workshop lets users publish packs directly from the launcher. Browse real user packs, search titles/authors, filter categories, preview and download.
 
@@ -35,7 +48,7 @@ Packs contain metadata and audio only, up to 10 MB per local sound. Cloud public
 
 To build from source, run `Build-Launcher.ps1` or `Launcher.cmd`. Releases include the compiled EXE. Settings and the local library are stored in `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
 
-## Installation
+## 🚀 Installation
 
 ### One PowerShell command
 
@@ -56,14 +69,14 @@ The command downloads the latest release, verifies its SHA256 checksum, extracts
 
 After a Discord update, repeat steps 2–4. Keep the CMD files together with the other files and the `sounds` folder.
 
-## Restore and check status
+## ↩️ Restore and check status
 
 - **`Restore.cmd`** restores the original loader. Fully quit Discord first, run the restore script, then reopen Discord.
 - **`Status.cmd`** shows whether the patch is installed and displays its latest log entries.
 
 `TS-SOUNDS-HIT:mute`, `unmute`, `user_join`, `user_leave`, or `disconnect` means a sound request was intercepted and replaced. A `ready` entry confirms that the handler loaded, but does not by itself confirm playback.
 
-## Sounds
+## 🔊 Sounds
 
 | Discord event | Original TeamSpeak 3 file |
 | --- | --- |
@@ -77,7 +90,7 @@ After a Discord update, repeat steps 2–4. Keep the CMD files together with the
 
 Discord uses the same sound for your own connection and another participant joining. Standard, Halloween, and winter resource variants are supported: 21 addresses in total. The corresponding sounds must be enabled in Discord's notification settings.
 
-## How it works
+## ⚙️ How it works
 
 `Manage-Sounds.ps1` finds the latest installed Discord version in the standard user directory or `%ProgramData%\%USERNAME%\Discord`. Before changing `index.js`, it creates an `index.js.ts-original` backup. Reapplying the patch preserves that original backup. The script refuses to overwrite an unrecognized loader.
 
@@ -87,7 +100,7 @@ When Discord starts, the patch replaces requests for the specified audio resourc
 
 The CMD files allow PowerShell script execution only for the launched process; they do not permanently change Windows execution policy. Administrator rights are usually unnecessary. Restoring disables the patch while leaving the backup and inactive files next to the loader.
 
-## Compatibility and verification
+## ✅ Compatibility and verification
 
 For the headphones button, exact WAV replacement and standard and seasonal addresses have been verified. Handler checks cover all 21 addresses. A real button press with this new version has not been separately tested.
 
@@ -102,10 +115,10 @@ Tested with Discord **1.0.9265** on Windows on October 28, 2026:
 
 A real `disconnect` event and audible playback on a specific output device have not been separately confirmed. Future changes to Discord's playback mechanism may require updating the patch itself rather than simply rerunning `Apply.cmd`.
 
-## Audio source
+## 🎵 Audio source
 
 The original WAV files were extracted from the `sound/default` package of the official [TeamSpeak 3 Client 3.6.2](https://www.teamspeak.com/en/downloads/#ts3client), without installing or running TeamSpeak. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-## Support the project
+## 🧡 Support the project
 
 [Support development with a donation](https://donatello.to/loxire)

@@ -1,4 +1,17 @@
-# Звуки TeamSpeak для Discord
+<div align="center">
+  <img src="launcher/assets/soundspace.png" alt="SoundSpace" width="112" height="112">
+  <h1>SoundSpace</h1>
+  <p><strong>Твій Discord. Твої звуки.</strong></p>
+  <p>TeamSpeak sounds · Custom WAV / MP3 · Community Workshop</p>
+  <p>
+    <a href="https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest"><img src="https://img.shields.io/github/v/release/BrainMcLore/discord-teamspeak-sounds?style=flat-square&amp;color=ff6500&amp;label=SoundSpace" alt="Latest release"></a>
+    <img src="https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=flat-square" alt="Windows 10 / 11">
+    <img src="https://img.shields.io/badge/languages-RU%20%C2%B7%20EN%20%C2%B7%20UK-5865F2?style=flat-square" alt="RU / EN / UK">
+  </p>
+  <p><a href="https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest"><strong>⬇️ Завантажити SoundSpace</strong></a> · <a href="CHANGELOG.md">📋 Що нового</a> · <a href="https://donatello.to/loxire">🧡 Підтримати проєкт</a></p>
+</div>
+
+---
 
 [Русский](README.md) | [English](README.en.md) | **Українська**
 
@@ -6,7 +19,7 @@
 
 Vencord, BetterDiscord та окрема фонова програма не потрібні. Невеликий патч завантажується в наявний процес Discord.
 
-## Лаунчер
+## 🎧 Лаунчер
 
 **v3.0 SoundSpace:** новий інтерфейс із картками та власна іконка. Спільний хмарний воркшоп уже підключено: користувачі публікують паки прямо з програми, а інші можуть шукати їх за назвою чи автором, вибирати категорії, слухати й завантажувати.
 
@@ -35,7 +48,7 @@ Vencord, BetterDiscord та окрема фонова програма не по
 
 Для збирання з вихідного коду запустіть `Build-Launcher.ps1` або `Launcher.cmd`. Готовий реліз уже містить EXE. Налаштування та локальна бібліотека зберігаються в `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
 
-## Встановлення
+## 🚀 Встановлення
 
 ### Однією командою PowerShell
 
@@ -56,14 +69,14 @@ Vencord, BetterDiscord та окрема фонова програма не по
 
 Після оновлення Discord повторіть кроки 2–4. Зберігайте CMD-файли разом з іншими файлами та папкою `sounds`.
 
-## Відновлення та перевірка
+## ↩️ Відновлення та перевірка
 
 - **`Restore.cmd`** повертає початковий завантажувач. Спочатку повністю закрийте Discord, виконайте відновлення, а потім знову відкрийте програму.
 - **`Status.cmd`** показує, чи встановлено патч, та останні записи його журналу.
 
 `TS-SOUNDS-HIT:mute`, `unmute`, `user_join`, `user_leave` або `disconnect` означає, що запит звуку було перехоплено й замінено. Запис `ready` підтверджує завантаження обробника, але сам по собі не підтверджує відтворення.
 
-## Звуки
+## 🔊 Звуки
 
 | Подія Discord | Початковий файл TeamSpeak 3 |
 | --- | --- |
@@ -77,7 +90,7 @@ Vencord, BetterDiscord та окрема фонова програма не по
 
 Discord використовує один звук для власного підключення та приєднання іншого учасника. Підтримуються звичайні, Halloween і зимові варіанти ресурсів — загалом 21 адреса. Відповідні звуки мають бути ввімкнені в налаштуваннях сповіщень Discord.
 
-## Як це працює
+## ⚙️ Як це працює
 
 `Manage-Sounds.ps1` знаходить останню встановлену версію Discord у стандартній папці користувача або в `%ProgramData%\%USERNAME%\Discord`. Перед зміною `index.js` створюється резервна копія `index.js.ts-original`. Повторне застосування зберігає цю початкову копію. Скрипт відмовляється перезаписувати невідомий завантажувач.
 
@@ -87,7 +100,7 @@ Discord використовує один звук для власного пі�
 
 CMD-файли дозволяють виконання PowerShell-скрипта лише в запущеному процесі; постійна політика Windows не змінюється. Права адміністратора зазвичай не потрібні. Відновлення вимикає патч, залишаючи резервну копію та неактивні файли поруч із завантажувачем.
 
-## Сумісність і перевірка
+## ✅ Сумісність і перевірка
 
 Для кнопки навушників перевірено підстановку точних WAV та обробку звичайних і сезонних адрес. Перевірка обробника охоплює всі 21 адресу. Реальне натискання кнопки з новою версією окремо не перевірялося.
 
@@ -102,10 +115,10 @@ CMD-файли дозволяють виконання PowerShell-скрипта
 
 Окремо не підтверджено реальну подію `disconnect` і чутне відтворення на конкретному пристрої виведення. Зміни механізму відтворення в майбутніх версіях Discord можуть вимагати оновлення самого патча, а не лише повторного запуску `Apply.cmd`.
 
-## Джерело звуків
+## 🎵 Джерело звуків
 
 Оригінальні WAV-файли видобуто з пакета `sound/default` офіційного [TeamSpeak 3 Client 3.6.2](https://www.teamspeak.com/en/downloads/#ts3client) без встановлення та запуску TeamSpeak. Див. [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-## Підтримати проєкт
+## 🧡 Підтримати проєкт
 
 [Підтримати розробку донатом](https://donatello.to/loxire)
