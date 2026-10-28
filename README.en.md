@@ -31,7 +31,7 @@ Download and launch with one PowerShell command:
 
 The launcher can stay open alongside Discord. Fully quit Discord before Apply or Restore, then start Discord again. The launcher can be closed afterward; it is not needed for sound playback.
 
-Packs contain metadata and audio only, up to 10 MB per local sound. Cloud publication requires an archive of 8 MB or less. The old GitHub catalog remains a preset archive; the current shared workshop uses Cloudflare. See [workshop/README.md](workshop/README.md).
+Packs contain metadata and audio only, up to 10 MB per local sound. Cloud publication requires an archive of 8 MB or less. The shared workshop uses Cloudflare.
 
 To build from source, run `Build-Launcher.ps1` or `Launcher.cmd`. Releases include the compiled EXE. Settings and the local library are stored in `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
 
