@@ -1,0 +1,9 @@
+*.log
+*.ts-original
+*.ts-new
+work/
+node_modules/
+.env
+.env.*
+*.zip
+*.exe
