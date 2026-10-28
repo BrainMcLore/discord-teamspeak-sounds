@@ -6,6 +6,8 @@ https://files.teamspeak-services.com/releases/client/3.6.2/TeamSpeak3-Client-win
 
 The files retain TeamSpeak's ownership and applicable terms. This repository does not grant an independent license to those audio recordings. This project is not affiliated with TeamSpeak or Discord.
 
+The bundled `.dspack` presets and initial workshop packs also contain TeamSpeak audio. Female and Clicks use `sound/default`; Male uses `sound/default_male`. Classic Clicks substitutes `mic_click_off.wav` and `mic_click_on.wav` for microphone mute/unmute. Other events use the original files listed below. The preset selection and packaging do not change ownership of the recordings.
+
 | Repository file | Original file |
 | --- | --- |
 | `sounds/mute.wav` | `mic_muted.wav` |

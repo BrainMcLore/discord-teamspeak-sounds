@@ -1,14 +1,15 @@
 param(
  [string]$InstallRoot = (Join-Path $env:LOCALAPPDATA 'DiscordTeamSpeakSounds'),
- [switch]$DownloadOnly
+ [switch]$DownloadOnly,
+ [switch]$Launcher
 )
 $ErrorActionPreference = 'Stop'
-if(!$DownloadOnly -and @(Get-Process Discord -ErrorAction SilentlyContinue).Count){
+if(!$DownloadOnly -and !$Launcher -and @(Get-Process Discord -ErrorAction SilentlyContinue).Count){
  throw 'Completely quit Discord using its tray icon, then run this command again.'
 }
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 $headers = @{'User-Agent'='Discord-TeamSpeak-Sounds-Installer'; Accept='application/vnd.github+json'}
-$release = Invoke-RestMethod -Uri 'https://api.github.com/repos/BrainMcLore/discord-teamspeak-sounds/releases/latest' -Headers $headers -TimeoutSec 30
+$release = Invoke-RestMethod -Uri ('https://api.github.com/repos/BrainMcLore/discord-teamspeak-sounds/releases/latest?request='+[DateTime]::UtcNow.Ticks) -Headers $headers -TimeoutSec 30
 $archives = @($release.assets | Where-Object name -Match '^Discord-TeamSpeak-Sounds-v[0-9.]+\.zip$')
 $checksums = @($release.assets | Where-Object name -Match '^SHA256SUMS(?:-v[0-9.]+)?\.txt$')
 if($archives.Count -ne 1 -or $checksums.Count -ne 1){throw 'The latest release does not contain a unique ZIP and checksum file.'}
@@ -48,6 +49,12 @@ foreach($file in @('Manage-Sounds.ps1','teamspeak-sounds.js','sound-assets.json'
 }
 Write-Host ('SHA256 verified. Package: '+$package)
 if($DownloadOnly){Write-Host 'Download-only mode: Discord was not modified.'; return}
+if($Launcher){
+ $exe=Join-Path $package 'Discord-Sound-Launcher.exe'
+ if(!(Test-Path -LiteralPath $exe)){throw 'This release does not contain the launcher.'}
+ Start-Process -FilePath $exe -WorkingDirectory $package
+ return
+}
 & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $package 'Manage-Sounds.ps1') -Mode Apply
 if($LASTEXITCODE -ne 0){throw ('Patch failed. Package retained at: '+$package)}
 Write-Host 'Done. Start Discord as usual.'

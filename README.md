@@ -6,6 +6,29 @@
 
 Vencord, BetterDiscord и отдельная фоновая программа не требуются. Небольшой патч загружается внутри существующего процесса Discord.
 
+## Лаунчер
+
+Скачайте ZIP из [последнего релиза](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest), распакуйте целиком и откройте **Discord-Sound-Launcher.exe** или **Launcher.cmd**. Нужен Windows с .NET Framework 4.8. Отдельная установка .NET SDK не требуется.
+
+- Пресеты **TeamSpeak Female**, **TeamSpeak Male** и **Classic Clicks**.
+- Свои WAV/MP3 для каждого из семи событий, прослушивание до применения.
+- Галочка выключена — для этого события остаётся оригинальный звук Discord.
+- Импорт и экспорт паков `.dspack`, сохранение выбора между запусками.
+- Воркшоп: каталог на GitHub, скачивание паков с проверкой SHA256.
+- Интерфейс на русском, английском и украинском.
+
+Запустить лаунчер одной командой PowerShell:
+
+```powershell
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=2'))) -Launcher
+```
+
+Лаунчер может быть открыт вместе с Discord. Перед кнопкой «Применить» или «Вернуть оригинал» полностью закройте Discord. После применения снова запустите его. Лаунчер можно закрыть — для работы звуков он не нужен.
+
+Паки содержат только метаданные и аудио, до 10 МБ на звук. Воркшоп первой версии — каталог и обмен файлами; публикация в общий каталог выполняется через pull request, без сервера загрузок, рейтингов и аккаунтов. Подробнее: [workshop/README.md](workshop/README.md).
+
+Для сборки из исходников запустите `Build-Launcher.ps1` или `Launcher.cmd`. Готовый релиз уже содержит EXE. Настройки и локальная библиотека хранятся в `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
+
 ## Установка
 
 ### Одной командой PowerShell

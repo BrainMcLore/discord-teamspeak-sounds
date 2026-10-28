@@ -6,6 +6,29 @@ A Windows script that replaces Discord's microphone and voice channel sounds wit
 
 Vencord, BetterDiscord, and a separate background application are not required. A small patch runs inside Discord's existing process.
 
+## Launcher
+
+Download the ZIP from the [latest release](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest), extract it completely, and open **Discord-Sound-Launcher.exe** or **Launcher.cmd**. Requires Windows with .NET Framework 4.8; no .NET SDK installation is needed.
+
+- **TeamSpeak Female**, **TeamSpeak Male**, and **Classic Clicks** presets.
+- Choose your own WAV/MP3 for each of seven events and preview it before applying.
+- Uncheck an event to keep Discord's original sound.
+- Import/export `.dspack` files and retain your selections between sessions.
+- Workshop: a GitHub catalog with SHA256-verified downloads.
+- Russian, English, and Ukrainian interface.
+
+Download and launch with one PowerShell command:
+
+```powershell
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=2'))) -Launcher
+```
+
+The launcher can stay open alongside Discord. Fully quit Discord before Apply or Restore, then start Discord again. The launcher can be closed afterward; it is not needed for sound playback.
+
+Packs contain metadata and audio only, up to 10 MB per sound. This first workshop version provides a catalog and file exchange. Catalog contributions use pull requests; an upload server, ratings, and accounts are not included. See [workshop/README.md](workshop/README.md).
+
+To build from source, run `Build-Launcher.ps1` or `Launcher.cmd`. Releases include the compiled EXE. Settings and the local library are stored in `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
+
 ## Installation
 
 ### One PowerShell command

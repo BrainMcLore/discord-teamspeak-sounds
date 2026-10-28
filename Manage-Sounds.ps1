@@ -1,4 +1,4 @@
-param([ValidateSet('Apply','Restore','Status')][string]$Mode='Apply')
+param([ValidateSet('Apply','Restore','Status')][string]$Mode='Apply',[string]$PackPath=$PSScriptRoot)
 $ErrorActionPreference='Stop'
 $utf8=New-Object Text.UTF8Encoding($false)
 try {
@@ -36,6 +36,23 @@ try {
  $entries=@(Get-ChildItem -Path (Join-Path $v.FullName 'modules\discord_desktop_core-*\discord_desktop_core\index.js') -ErrorAction SilentlyContinue)
  if($entries.Count -ne 1){throw 'Cannot uniquely find Discord core. No changes made.'}
  $entry=$entries[0].FullName
+ $soundKeys=@('mute','unmute','deafen','undeafen','user_join','user_leave','disconnect')
+ $soundManifest=@{}
+ $manifestPath=Join-Path $PackPath 'sounds.json'
+ if(Test-Path -LiteralPath $manifestPath){
+  $manifest=Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8|ConvertFrom-Json
+  foreach($property in $manifest.PSObject.Properties){
+   $key=$property.Name; $spec=$property.Value
+   if($key -notin $soundKeys -or $spec.file -notin @("$key.wav","$key.mp3")){throw 'Invalid sound pack manifest.'}
+   $mime=if($spec.file.EndsWith('.mp3')){'audio/mpeg'}else{'audio/wav'}
+   if($spec.mime -ne $mime){throw 'Invalid sound MIME type.'}
+   $soundManifest[$key]=@{file=$spec.file;mime=$mime}
+  }
+ }else{foreach($key in $soundKeys){$soundManifest[$key]=@{file="$key.wav";mime='audio/wav'}}}
+ foreach($key in $soundManifest.Keys){
+  $soundFile=Get-Item -LiteralPath (Join-Path $PackPath ('sounds\'+$soundManifest[$key].file))
+  if($soundFile.Length -gt 10MB -or $soundFile.Length -lt 12){throw "Invalid audio file size: $key"}
+ }
  $assetMap=@{}
  $bundledMap=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'sound-assets.json') -Raw|ConvertFrom-Json
  foreach($property in $bundledMap.PSObject.Properties){$assetMap[$property.Name]=$property.Value}
@@ -70,11 +87,12 @@ try {
  New-Item -ItemType Directory -Path (Join-Path $dest 'sounds') -Force|Out-Null
  Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'teamspeak-sounds.js') -Destination (Join-Path $dest 'teamspeak-sounds.js') -Force
  [IO.File]::WriteAllText((Join-Path $dest 'sound-assets.json'),($assetMap|ConvertTo-Json),$utf8)
- foreach($name in @('mute','unmute','deafen','undeafen','user_join','user_leave','disconnect')){
-  $source=Join-Path $PSScriptRoot "sounds\$name.wav"
-  if(!(Test-Path -LiteralPath $source)){throw "Missing sound: $name"}
-  Copy-Item -LiteralPath $source -Destination (Join-Path $dest "sounds\$name.wav") -Force
+ foreach($name in $soundManifest.Keys){
+  $file=$soundManifest[$name].file
+  $source=Join-Path $PackPath "sounds\$file"
+  Copy-Item -LiteralPath $source -Destination (Join-Path $dest "sounds\$file") -Force
  }
+ [IO.File]::WriteAllText((Join-Path $dest 'sounds.json'),(ConvertTo-Json -InputObject $soundManifest -Depth 4),$utf8)
  $patch="// TS-SOUNDS-PATCH v1`r`ntry { require('./ts-sounds/teamspeak-sounds.js'); } catch (e) { console.error('TS-SOUNDS', e.message); }`r`nmodule.exports = require('./core.asar');`r`n"
  [IO.File]::WriteAllText($entry+'.ts-new',$patch,$utf8)
  Move-Item -LiteralPath ($entry+'.ts-new') -Destination $entry -Force

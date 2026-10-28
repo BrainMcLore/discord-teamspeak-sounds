@@ -6,15 +6,21 @@ const path = require('path');
 function log(value) {
   try { fs.appendFileSync(path.join(__dirname, 'status.log'), new Date().toISOString() + ' ' + value + '\n'); } catch (_) {}
 }
-const sounds = Object.fromEntries(['mute','unmute','deafen','undeafen','user_join','user_leave','disconnect'].map(name =>
-  [name, fs.readFileSync(path.join(__dirname, 'sounds', name + '.wav')).toString('base64')]));
+const keys = ['mute','unmute','deafen','undeafen','user_join','user_leave','disconnect'];
+const manifestPath = path.join(__dirname, 'sounds.json');
+const manifest = fs.existsSync(manifestPath) ? JSON.parse(fs.readFileSync(manifestPath,'utf8')) :
+  Object.fromEntries(keys.map(name=>[name,{file:name+'.wav',mime:'audio/wav'}]));
+const sounds = Object.fromEntries(Object.entries(manifest).map(([name,spec])=>{
+  if(!keys.includes(name) || ![name+'.wav',name+'.mp3'].includes(spec.file) || spec.mime !== (spec.file.endsWith('.mp3')?'audio/mpeg':'audio/wav')) throw Error('Invalid sound manifest');
+  return [name,{data:fs.readFileSync(path.join(__dirname,'sounds',spec.file)).toString('base64'),mime:spec.mime}];
+}));
 const assets = JSON.parse(fs.readFileSync(path.join(__dirname,'sound-assets.json'),'utf8'));
 function renderer(payload,assets) {
   if (window.__teamSpeakSounds) return window.__teamSpeakSounds;
   const byFile = new Map();
-  for (const [name,b64] of Object.entries(payload)) {
-    const bytes = Uint8Array.from(atob(b64), c=>c.charCodeAt(0));
-    const item = {name,bytes,uri:URL.createObjectURL(new Blob([bytes], {type:'audio/wav'}))};
+  for (const [name,spec] of Object.entries(payload)) {
+    const bytes = Uint8Array.from(atob(spec.data), c=>c.charCodeAt(0));
+    const item = {name,bytes,mime:spec.mime,uri:URL.createObjectURL(new Blob([bytes], {type:spec.mime}))};
     for (const [file,key] of Object.entries(assets)) if(key===name) byFile.set(file,item);
   }
   function match(input) {
@@ -31,7 +37,7 @@ function renderer(payload,assets) {
     if (!item) return Reflect.apply(originalFetch,this,arguments);
     hit(item);
     const head=(init?.method || input?.method || 'GET').toUpperCase()==='HEAD';
-    return Promise.resolve(new Response(head?null:item.bytes,{status:200,headers:{'Content-Type':'audio/wav','Content-Length':String(item.bytes.length)}}));
+    return Promise.resolve(new Response(head?null:item.bytes,{status:200,headers:{'Content-Type':item.mime,'Content-Length':String(item.bytes.length)}}));
   };
   const proto=HTMLMediaElement.prototype;
   const descriptor=Object.getOwnPropertyDescriptor(proto,'src');
