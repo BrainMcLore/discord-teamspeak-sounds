@@ -105,3 +105,7 @@ A real `disconnect` event and audible playback on a specific output device have 
 ## Audio source
 
 The original WAV files were extracted from the `sound/default` package of the official [TeamSpeak 3 Client 3.6.2](https://www.teamspeak.com/en/downloads/#ts3client), without installing or running TeamSpeak. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Support the project
+
+[Support development with a donation](https://donatello.to/loxire)

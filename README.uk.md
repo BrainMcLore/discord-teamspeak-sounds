@@ -105,3 +105,7 @@ CMD-файли дозволяють виконання PowerShell-скрипта
 ## Джерело звуків
 
 Оригінальні WAV-файли видобуто з пакета `sound/default` офіційного [TeamSpeak 3 Client 3.6.2](https://www.teamspeak.com/en/downloads/#ts3client) без встановлення та запуску TeamSpeak. Див. [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Підтримати проєкт
+
+[Підтримати розробку донатом](https://donatello.to/loxire)
