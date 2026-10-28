@@ -26,7 +26,7 @@ Vencord, BetterDiscord та окрема фонова програма не по
 Завантажити й відкрити лаунчер однією командою PowerShell:
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=2'))) -Launcher
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=3'))) -Launcher
 ```
 
 Лаунчер можна відкрити одночасно з Discord. Перед застосуванням або відновленням повністю закрийте Discord, а потім запустіть знову. Лаунчер можна закрити — для відтворення звуків він не потрібен.

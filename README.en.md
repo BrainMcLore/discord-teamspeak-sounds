@@ -26,7 +26,7 @@ Download the ZIP from the [latest release](https://github.com/BrainMcLore/discor
 Download and launch with one PowerShell command:
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=2'))) -Launcher
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=3'))) -Launcher
 ```
 
 The launcher can stay open alongside Discord. Fully quit Discord before Apply or Restore, then start Discord again. The launcher can be closed afterward; it is not needed for sound playback.
