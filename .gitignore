@@ -8,3 +8,5 @@ node_modules/
 *.zip
 *.exe
 dist/
+PREVIEW.md
+AUTH-PREVIEW.md

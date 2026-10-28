@@ -15,8 +15,8 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly:System.Reflection.AssemblyTitle("Discord Sound Launcher")]
-[assembly:System.Reflection.AssemblyVersion("2.0.0.0")]
-[assembly:System.Reflection.AssemblyFileVersion("2.0.0.0")]
+[assembly:System.Reflection.AssemblyVersion("3.0.0.0")]
+[assembly:System.Reflection.AssemblyFileVersion("3.0.0.0")]
 
 namespace DiscordSoundLauncher {
  public sealed class SoundSpec { public string File; public string Mime; }
@@ -167,7 +167,7 @@ namespace DiscordSoundLauncher {
   [STAThread] public static int Main(string[] args){
    Application.EnableVisualStyles();Application.SetCompatibleTextRenderingDefault(false);
    if(args.Length==2&&args[0]=="--validate-pack"){try{Packs.Import(args[1]);return 0;}catch{return 1;}}
-   Application.Run(new Launcher());return 0;
+   new System.Windows.Application().Run(new ModernLauncher().Window);return 0;
   }
  }
 }

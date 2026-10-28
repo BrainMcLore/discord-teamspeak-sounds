@@ -1,0 +1,21 @@
+{
+  "name": "soundspace-workshop",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-28",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "soundspace-workshop",
+      "database_id": "d881ad87-8855-4a44-9fd5-868f1b7fd93d",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "MAX_STORAGE_BYTES": "536870912",
+    "MAX_USER_BYTES": "67108864",
+    "GITHUB_CLIENT_ID": "Ov23livjXWI7oVxZhO0Y",
+    "FIREBASE_PROJECT_ID": "soundspace-desktop",
+    "FIREBASE_API_KEY": "AIzaSyBZK_fAlvAuW9dmXhoRizzXHhPH0xf18Ug"
+  }
+}

@@ -1,5 +1,15 @@
 # Sound Pack Workshop
 
+## Current workshop / Текущий воркшоп / Поточний воркшоп
+
+**RU:** Откройте «Обзор» в лаунчере: это общий каталог пользователей с поиском, категориями, сортировкой, прослушиванием и выбором паков. Для публикации войдите через GitHub или подтверждённый email и нажмите «Поделиться паком». Удаление своих паков — в «Мои публикации», после подтверждения. Облако: 8 МБ на архив, 64 МБ на аккаунт. Локальные WAV/MP3 — до 10 МБ на файл.
+
+**EN:** Discover shows the live shared catalog with search, categories, sorting, previews and downloads. Sign in with GitHub or verified email to Share a pack. Delete your own packs under My uploads after confirmation. Cloud limits: 8 MB per archive, 64 MB per account. Local WAV/MP3: up to 10 MB per file.
+
+**UK:** «Огляд» показує спільний каталог із пошуком, категоріями, сортуванням, прослуховуванням і вибором. Для публікації увійдіть через GitHub або підтверджений email. Власні паки видаляються в «Мої публікації» після підтвердження. Хмара: 8 МБ на архів, 64 МБ на акаунт. Локальні WAV/MP3 — до 10 МБ на файл.
+
+The GitHub catalog instructions below describe the archived v2 catalog and the pack format. They are not required for the current in-app workshop.
+
 [Русский](#русский) · [English](#english) · [Українська](#українська)
 
 ## Русский

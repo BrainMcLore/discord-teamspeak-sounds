@@ -1,0 +1,62 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="SoundSpace — Discord Sound Launcher" Width="1160" Height="900" MinWidth="1000" MinHeight="760" WindowStartupLocation="CenterScreen" Background="#0B0B0D" Foreground="#F5F5F7" FontFamily="Segoe UI" FontSize="14" WindowStyle="None" ResizeMode="CanResizeWithGrip">
+ <Window.Resources>
+  <SolidColorBrush x:Key="Muted" Color="#92929D"/>
+  <Style TargetType="Button"><Setter Property="Foreground" Value="#F5F5F7"/><Setter Property="Background" Value="#202024"/><Setter Property="BorderBrush" Value="#303036"/><Setter Property="BorderThickness" Value="1"/><Setter Property="Padding" Value="18,10"/><Setter Property="Cursor" Value="Hand"/><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button"><Border x:Name="chrome" CornerRadius="18" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"><ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><ControlTemplate.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter TargetName="chrome" Property="Opacity" Value="0.8"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter TargetName="chrome" Property="Opacity" Value="0.38"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style>
+  <Style x:Key="Accent" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"><Setter Property="Background" Value="#FF5900"/><Setter Property="Foreground" Value="#080808"/><Setter Property="BorderBrush" Value="#FF5900"/></Style>
+  <Style TargetType="TextBox"><Setter Property="Background" Value="#151518"/><Setter Property="Foreground" Value="#F5F5F7"/><Setter Property="CaretBrush" Value="#FF5900"/><Setter Property="BorderBrush" Value="#303036"/><Setter Property="Padding" Value="12,10"/><Setter Property="VerticalContentAlignment" Value="Center"/><Setter Property="FontSize" Value="14"/></Style>
+  <Style TargetType="PasswordBox"><Setter Property="Background" Value="#151518"/><Setter Property="Foreground" Value="#F5F5F7"/><Setter Property="BorderBrush" Value="#303036"/><Setter Property="Padding" Value="12,10"/></Style>
+  <Style TargetType="CheckBox"><Setter Property="Foreground" Value="#F5F5F7"/><Setter Property="VerticalContentAlignment" Value="Center"/></Style>
+  <Style TargetType="ScrollBar"><Setter Property="Width" Value="9"/></Style>
+ </Window.Resources>
+ <Border BorderBrush="#28282E" BorderThickness="1" CornerRadius="12">
+ <Grid>
+  <Grid.RowDefinitions><RowDefinition Height="72"/><RowDefinition Height="*"/><RowDefinition Height="76"/></Grid.RowDefinitions>
+  <Border x:Name="DragBar" Background="#101012" BorderBrush="#242428" BorderThickness="0,0,0,1">
+   <Grid Margin="28,0,18,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center"><Image x:Name="BrandIcon" Width="34" Height="34"/><TextBlock Text="SOUND" FontWeight="Bold" FontSize="19" Margin="12,0,0,0" VerticalAlignment="Center"/><TextBlock Text="SPACE" FontWeight="Bold" FontSize="19" Foreground="#FF5900" VerticalAlignment="Center"/><Border Background="#232326" CornerRadius="7" Padding="7,3" Margin="14,0,0,0" VerticalAlignment="Center"><TextBlock Text="v3.0" FontSize="10" Foreground="#A0A0AC"/></Border></StackPanel>
+    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,22,0"><Button x:Name="LangRu" Content="RU" Padding="8,6" Background="Transparent" BorderThickness="0"/><Button x:Name="LangEn" Content="EN" Padding="8,6" Background="Transparent" BorderThickness="0"/><Button x:Name="LangUk" Content="UK" Padding="8,6" Background="Transparent" BorderThickness="0"/><Button x:Name="AccountButton" Content="Войти" Margin="16,0,0,0" Padding="16,7"/></StackPanel>
+    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center"><Button x:Name="MinimizeButton" Content="—" Padding="10,7" Background="Transparent" BorderThickness="0"/><Button x:Name="CloseButton" Content="✕" Padding="10,7" Background="Transparent" BorderThickness="0"/></StackPanel>
+   </Grid>
+  </Border>
+  <ScrollViewer x:Name="ContentScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+   <StackPanel Margin="42,30,42,28">
+    <TextBlock x:Name="Eyebrow" Text="ТВОЙ DISCORD. ТВОЁ ЗВУЧАНИЕ." FontSize="11" FontWeight="Bold" Foreground="#FF6A19"/>
+    <TextBlock x:Name="HeroTitle" Text="Звучать по-своему." FontSize="35" FontWeight="Bold" Margin="0,8,0,8"/>
+    <TextBlock x:Name="HeroDescription" Text="Находи паки сообщества или собирай собственный звук для каждого события." Foreground="{StaticResource Muted}" TextWrapping="Wrap"/>
+    <Border x:Name="Notice" Background="#24160F" BorderBrush="#6D2E10" BorderThickness="1" CornerRadius="14" Padding="16,12" Margin="0,23,0,18"><TextBlock x:Name="NoticeText" TextWrapping="Wrap" Foreground="#D6B7A4" Text="Тестовая сборка. Применение меняет только выбранные звуки. Перед применением закрой Discord."/></Border>
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,25"><Border Background="#141417" BorderBrush="#2A2A30" BorderThickness="1" CornerRadius="24" Padding="5"><StackPanel Orientation="Horizontal"><Button x:Name="DiscoverTab" Content="Обзор" Style="{StaticResource Accent}"/><Button x:Name="LibraryTab" Content="Мои звуки" Background="Transparent" BorderThickness="0"/><Button x:Name="PublicationsTab" Content="Мои публикации" Background="Transparent" BorderThickness="0"/><Button x:Name="SettingsTab" Content="Настройки" Background="Transparent" BorderThickness="0"/></StackPanel></Border></StackPanel>
+    <StackPanel x:Name="DiscoverView">
+     <TextBlock x:Name="StudioTitle" Text="От SoundSpace" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,14"/>
+     <UniformGrid x:Name="PresetCards" Columns="3" Margin="-6,0,-6,28"/>
+     <Grid Margin="0,0,0,6"><TextBlock x:Name="CommunityTitle" Text="От сообщества" FontSize="22" FontWeight="SemiBold"/><Button x:Name="PublishButton" Content="↑  Поделиться паком" HorizontalAlignment="Right" Background="Transparent" Foreground="#FF6A19" BorderThickness="0" Padding="12,5"/></Grid>
+     <TextBlock x:Name="CommunityDescription" Text="Звуки, которыми делятся другие пользователи. Слушай, выбирай и добавляй в свою коллекцию." Foreground="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,16"/>
+     <Grid Margin="0,0,0,12"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Border CornerRadius="22" Background="#151518" BorderBrush="#303036" BorderThickness="1"><TextBox x:Name="SearchBox" BorderThickness="0" Background="Transparent" ToolTip="Название или автор"/></Border><Button x:Name="SearchButton" Grid.Column="2" Content="Найти" Margin="0,0,12,0"/><Button x:Name="SortButton" Grid.Column="3" Content="Новые ↓"/></Grid>
+     <WrapPanel x:Name="CategoryChips" Margin="0,0,0,20"/>
+     <TextBlock x:Name="CommunityStatus" Foreground="#92929D" TextWrapping="Wrap" Margin="0,0,0,14"/>
+     <WrapPanel x:Name="CommunityCards" Margin="-6,0,-6,0"/>
+     <Button x:Name="LoadMoreButton" Content="Показать ещё" HorizontalAlignment="Center" Margin="0,18,0,0" Visibility="Collapsed"/>
+    </StackPanel>
+    <StackPanel x:Name="LibraryView" Visibility="Collapsed">
+     <Grid Margin="0,0,0,16"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><StackPanel><TextBlock x:Name="LibraryTitle" Text="Моя подборка" FontSize="23" FontWeight="SemiBold"/><TextBlock x:Name="CurrentPack" Foreground="#92929D" Margin="0,6,0,0"/></StackPanel><Button Grid.Column="1" x:Name="ImportButton" Content="Импорт пака" Margin="12,0"/><Button Grid.Column="2" x:Name="ExportButton" Content="Экспорт пака"/></Grid>
+     <TextBlock x:Name="LibraryHint" Text="Сними галочку, чтобы оставить оригинал Discord. WAV или MP3, до 10 МБ на звук." Foreground="#92929D" TextWrapping="Wrap" Margin="0,0,0,16"/>
+     <StackPanel x:Name="SoundRows"/>
+     <TextBlock x:Name="PackNameLabel" Text="Название твоего пака" Foreground="#92929D" Margin="0,18,0,8"/><TextBox x:Name="PackNameBox" Text="Мой пак"/>
+    </StackPanel>
+    <StackPanel x:Name="PublicationsView" Visibility="Collapsed">
+     <TextBlock x:Name="PublicationsTitle" Text="Мои публикации" FontSize="23" FontWeight="SemiBold" Margin="0,0,0,12"/>
+     <TextBlock x:Name="PublicationsHint" Text="Здесь только твои паки. Удалённый пак исчезнет из общего каталога." Foreground="#92929D" TextWrapping="Wrap" Margin="0,0,0,16"/>
+     <Button x:Name="RefreshPublicationsButton" Content="Обновить" HorizontalAlignment="Left" Margin="0,0,0,16"/>
+     <WrapPanel x:Name="MyPackCards"/>
+    </StackPanel>
+    <StackPanel x:Name="SettingsView" Visibility="Collapsed">
+     <TextBlock x:Name="SettingsTitle" Text="Настройки воркшопа" FontSize="23" FontWeight="SemiBold" Margin="0,0,0,14"/>
+     <TextBlock x:Name="ServerLabel" Text="Адрес общего сервера" Foreground="#92929D"/><TextBox x:Name="ServerBox" Margin="0,8,0,14"/><Button x:Name="SaveServerButton" Content="Подключиться" HorizontalAlignment="Left" Style="{StaticResource Accent}"/>
+     <TextBlock x:Name="ServerHelp" Text="После подключения облака здесь появятся паки других пользователей. Не локальный каталог и не pull request." TextWrapping="Wrap" Foreground="#92929D" Margin="0,18,0,24"/>
+     <Button x:Name="RestoreButton" Content="Вернуть звуки Discord" HorizontalAlignment="Left" Margin="0,0,0,12"/><Button x:Name="StatusButton" Content="Диагностика" HorizontalAlignment="Left"/>
+     <TextBlock Text="Журнал / Log" Foreground="#92929D" Margin="0,22,0,8"/><TextBox x:Name="LogBox" IsReadOnly="True" MinHeight="140" MaxHeight="280" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+    </StackPanel>
+   </StackPanel>
+  </ScrollViewer>
+  <Border Grid.Row="2" Background="#101012" BorderBrush="#26262C" BorderThickness="0,1,0,0"><Grid Margin="42,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><StackPanel VerticalAlignment="Center"><TextBlock x:Name="FooterTitle" Text="Твоя подборка готова" FontWeight="SemiBold"/><TextBlock x:Name="FooterStatus" Text="Выбери звуки и примени их в Discord" Foreground="#92929D" FontSize="12" Margin="0,5,0,0"/></StackPanel><Button x:Name="ApplyButton" Grid.Column="1" Content="Применить в Discord  →" Style="{StaticResource Accent}" VerticalAlignment="Center" Padding="25,12"/></Grid></Border>
+ </Grid></Border>
+</Window>

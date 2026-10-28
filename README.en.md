@@ -8,13 +8,19 @@ Vencord, BetterDiscord, and a separate background application are not required. 
 
 ## Launcher
 
+**v3.0 SoundSpace:** a redesigned card-based interface and original app icon. The live shared workshop lets users publish packs directly from the launcher. Browse real user packs, search titles/authors, filter categories, preview and download.
+
+Sign in with GitHub or email and password. Email accounts must verify their address through Firebase. Sign-in and registration have separate screens; password reset and resend verification are available. Legacy username sign-in preserves access to existing accounts and packs.
+
+**My uploads** lets owners delete their packs after confirmation. Ownership is enforced by the server. Cloud limits: 8 MB per pack, 64 MB per account and 512 MB for the shared test catalog. The server address is already configured; users do not need their own Cloudflare account.
+
 Download the ZIP from the [latest release](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest), extract it completely, and open **Discord-Sound-Launcher.exe** or **Launcher.cmd**. Requires Windows with .NET Framework 4.8; no .NET SDK installation is needed.
 
 - **TeamSpeak Female**, **TeamSpeak Male**, and **Classic Clicks** presets.
 - Choose your own WAV/MP3 for each of seven events and preview it before applying.
 - Uncheck an event to keep Discord's original sound.
 - Import/export `.dspack` files and retain your selections between sessions.
-- Workshop: a GitHub catalog with SHA256-verified downloads.
+- Workshop: live user catalog, in-app publication and SHA256-verified downloads.
 - Russian, English, and Ukrainian interface.
 
 Download and launch with one PowerShell command:
@@ -25,7 +31,7 @@ Download and launch with one PowerShell command:
 
 The launcher can stay open alongside Discord. Fully quit Discord before Apply or Restore, then start Discord again. The launcher can be closed afterward; it is not needed for sound playback.
 
-Packs contain metadata and audio only, up to 10 MB per sound. This first workshop version provides a catalog and file exchange. Catalog contributions use pull requests; an upload server, ratings, and accounts are not included. See [workshop/README.md](workshop/README.md).
+Packs contain metadata and audio only, up to 10 MB per local sound. Cloud publication requires an archive of 8 MB or less. The old GitHub catalog remains a preset archive; the current shared workshop uses Cloudflare. See [workshop/README.md](workshop/README.md).
 
 To build from source, run `Build-Launcher.ps1` or `Launcher.cmd`. Releases include the compiled EXE. Settings and the local library are stored in `%LOCALAPPDATA%\DiscordTeamSpeakSounds\launcher`.
 

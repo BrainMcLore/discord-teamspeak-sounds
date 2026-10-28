@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.0 — 2026-10-28
+
+- Rebuilt the launcher with WPF: dark cards, orange accents, waveform artwork and original SoundSpace icon.
+- Live shared Cloudflare workshop: real user publications, title/author search, categories and newest/popular sorting.
+- GitHub device sign-in with verified email and replay-protected authorization flows.
+- Firebase email/password sign-in with verification email, resend and password reset.
+- Separate sign-in and registration screens; registration confirms the password.
+- My uploads with confirmation and server-side ownership checks for deletion.
+- Legacy username sign-in preserves access to existing accounts and publications.
+- Localized account validation and readable server errors.
+
 ## 2.0.0 — 2026-10-28
 
 - Windows launcher with Russian, English, and Ukrainian interface.
