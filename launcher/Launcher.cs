@@ -15,8 +15,8 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
 [assembly:System.Reflection.AssemblyTitle("Discord Sound Launcher")]
-[assembly:System.Reflection.AssemblyVersion("3.0.0.0")]
-[assembly:System.Reflection.AssemblyFileVersion("3.0.0.0")]
+[assembly:System.Reflection.AssemblyVersion("3.0.1.0")]
+[assembly:System.Reflection.AssemblyFileVersion("3.0.1.0")]
 
 namespace DiscordSoundLauncher {
  public sealed class SoundSpec { public string File; public string Mime; }

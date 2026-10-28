@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1 — 2026-10-28
+
+- Make the EXE installer the primary download, with folder selection and an optional desktop shortcut.
+- PowerShell opens the verified installer by default; portable launch and direct patching remain available with -Portable and -Apply.
+
+
 ## 3.0.0 — 2026-10-28
 
 - Rebuilt the launcher with WPF: dark cards, orange accents, waveform artwork and original SoundSpace icon.

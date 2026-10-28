@@ -27,7 +27,7 @@ Vencord, BetterDiscord та окрема фонова програма не по
 
 У розділі **«Мої публікації»** можна видалити власний пак після підтвердження. Сервер перевіряє власника. Хмарні ліміти: 8 МБ на пак, 64 МБ на акаунт, 512 МБ для спільного тестового каталогу. Адресу сервера вже налаштовано; окремий акаунт Cloudflare користувачам не потрібний.
 
-Завантажте ZIP з [останнього релізу](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest), розпакуйте повністю та відкрийте **Discord-Sound-Launcher.exe** або **Launcher.cmd**. Потрібна Windows із .NET Framework 4.8; окреме встановлення .NET SDK не потрібне.
+Завантажте **[SoundSpace Setup.exe](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest/download/SoundSpace-Setup-v3.0.1.exe)** і відкрийте його. Майстер запропонує папку встановлення та створення ярлика на робочому столі. Потрібна Windows із .NET Framework 4.8.
 
 - Пресети **TeamSpeak Female**, **TeamSpeak Male** та **Classic Clicks**.
 - Власні WAV/MP3 для кожної із семи подій, прослуховування до застосування.
@@ -39,7 +39,7 @@ Vencord, BetterDiscord та окрема фонова програма не по
 Завантажити й відкрити лаунчер однією командою PowerShell:
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=3'))) -Launcher
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?setup=4')))
 ```
 
 Лаунчер можна відкрити одночасно з Discord. Перед застосуванням або відновленням повністю закрийте Discord, а потім запустіть знову. Лаунчер можна закрити — для відтворення звуків він не потрібен.
@@ -50,24 +50,17 @@ Vencord, BetterDiscord та окрема фонова програма не по
 
 ## 🚀 Встановлення
 
-### Однією командою PowerShell
-
-Повністю закрийте Discord через значок біля годинника → **Quit Discord**, потім вставте в PowerShell:
+### Через PowerShell
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1')))
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?setup=4')))
 ```
 
-Команда завантажить останній реліз, перевірить SHA256, розпакує його в `%LOCALAPPDATA%\DiscordTeamSpeakSounds\packages` і застосує патч. Наприкінці буде показано шлях до `Restore.cmd`. Якщо Discord відкритий, встановлення зупиниться з проханням закрити його. Після встановлення відкрийте Discord звичайним способом. Цією ж командою можна повторно застосувати патч після оновлення Discord.
+Команда завантажує останній EXE, перевіряє SHA256 і відкриває майстер встановлення. Виберіть папку та за бажанням увімкніть ярлик на робочому столі. Повністю закрийте Discord перед застосуванням звуків; для встановлення лаунчера це не потрібно.
 
-### Вручну
+### Переносна версія
 
-1. Натисніть **Code → Download ZIP** і розпакуйте весь архів.
-2. Повністю закрийте Discord через його значок біля годинника: **Quit Discord**.
-3. Запустіть `Apply.cmd` подвійним клацанням.
-4. Відкрийте Discord звичайним способом.
-
-Після оновлення Discord повторіть кроки 2–4. Зберігайте CMD-файли разом з іншими файлами та папкою `sounds`.
+[ZIP без встановлення — v3.0.0](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/tag/v3.0.0): розпакуйте повністю та відкрийте `Discord-Sound-Launcher.exe`. Для цього режиму додайте до PowerShell-команди `-Portable`. Використовуйте `-Apply` для застосування класичних звуків без лаунчера, попередньо повністю закривши Discord.
 
 ## ↩️ Відновлення та перевірка
 

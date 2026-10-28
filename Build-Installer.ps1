@@ -15,7 +15,7 @@ foreach ($name in @('Build-Launcher.ps1','Manage-Sounds.ps1','teamspeak-sounds.j
 if ($LASTEXITCODE -ne 0) { throw 'Launcher build failed.' }
 & $Compiler ('/DPayloadDir='+$stage) ('/DOutputDir='+$Destination) (Join-Path $PSScriptRoot 'installer\SoundSpace.iss')
 if ($LASTEXITCODE -ne 0) { throw 'Installer build failed.' }
-$setup=Join-Path $Destination 'SoundSpace-Setup-v3.0.0.exe'
+$setup=Join-Path $Destination 'SoundSpace-Setup-v3.0.1.exe'
 $hash=(Get-FileHash -LiteralPath $setup -Algorithm SHA256).Hash.ToLowerInvariant()
-[IO.File]::WriteAllText((Join-Path $Destination 'SoundSpace-Setup-v3.0.0.sha256'),($hash+'  '+[IO.Path]::GetFileName($setup)+[Environment]::NewLine),[Text.Encoding]::ASCII)
+[IO.File]::WriteAllText((Join-Path $Destination 'SoundSpace-Setup-v3.0.1.sha256'),($hash+'  '+[IO.Path]::GetFileName($setup)+[Environment]::NewLine),[Text.Encoding]::ASCII)
 Write-Host $setup

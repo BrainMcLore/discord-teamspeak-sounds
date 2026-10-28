@@ -8,7 +8,7 @@
 [Setup]
 AppId={{795EBD06-51BA-48C2-9F52-C2C466478E82}
 AppName=SoundSpace
-AppVersion=3.0.0
+AppVersion=3.0.1
 AppPublisher=BrainMcLore
 AppPublisherURL=https://github.com/BrainMcLore/discord-teamspeak-sounds
 DefaultDirName={localappdata}\Programs\SoundSpace
@@ -20,7 +20,7 @@ WizardStyle=modern
 SetupIconFile={#PayloadDir}\launcher\assets\soundspace.ico
 UninstallDisplayIcon={app}\Discord-Sound-Launcher.exe
 OutputDir={#OutputDir}
-OutputBaseFilename=SoundSpace-Setup-v3.0.0
+OutputBaseFilename=SoundSpace-Setup-v3.0.1
 Compression=lzma2
 SolidCompression=yes
 CloseApplications=yes

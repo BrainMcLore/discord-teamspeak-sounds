@@ -27,7 +27,7 @@ Sign in with GitHub or email and password. Email accounts must verify their addr
 
 **My uploads** lets owners delete their packs after confirmation. Ownership is enforced by the server. Cloud limits: 8 MB per pack, 64 MB per account and 512 MB for the shared test catalog. The server address is already configured; users do not need their own Cloudflare account.
 
-Download the ZIP from the [latest release](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest), extract it completely, and open **Discord-Sound-Launcher.exe** or **Launcher.cmd**. Requires Windows with .NET Framework 4.8; no .NET SDK installation is needed.
+Download **[SoundSpace Setup.exe](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/latest/download/SoundSpace-Setup-v3.0.1.exe)** and run it. The wizard offers an installation folder and an optional desktop shortcut. Requires Windows with .NET Framework 4.8.
 
 - **TeamSpeak Female**, **TeamSpeak Male**, and **Classic Clicks** presets.
 - Choose your own WAV/MP3 for each of seven events and preview it before applying.
@@ -39,7 +39,7 @@ Download the ZIP from the [latest release](https://github.com/BrainMcLore/discor
 Download and launch with one PowerShell command:
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?launcher=3'))) -Launcher
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?setup=4')))
 ```
 
 The launcher can stay open alongside Discord. Fully quit Discord before Apply or Restore, then start Discord again. The launcher can be closed afterward; it is not needed for sound playback.
@@ -50,24 +50,17 @@ To build from source, run `Build-Launcher.ps1` or `Launcher.cmd`. Releases inclu
 
 ## 🚀 Installation
 
-### One PowerShell command
-
-Fully quit Discord through its system tray icon → **Quit Discord**, then paste this into PowerShell:
+### With PowerShell
 
 ```powershell
-& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1')))
+& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/BrainMcLore/discord-teamspeak-sounds/main/Install.ps1?setup=4')))
 ```
 
-The command downloads the latest release, verifies its SHA256 checksum, extracts it into `%LOCALAPPDATA%\DiscordTeamSpeakSounds\packages`, and applies the patch. It prints the path to `Restore.cmd`. If Discord is running, installation stops and asks you to quit it. Start Discord as usual afterward. Use the same command to reapply the patch after Discord updates.
+The command downloads the latest EXE, verifies SHA256 and opens the installation wizard. Choose a folder and optionally enable the desktop shortcut. Fully quit Discord before applying sounds; installing the launcher does not require closing Discord.
 
-### Manual installation
+### Portable version
 
-1. Click **Code → Download ZIP** and extract the entire archive.
-2. Fully quit Discord using its system tray icon: **Quit Discord**.
-3. Double-click `Apply.cmd`.
-4. Start Discord as usual.
-
-After a Discord update, repeat steps 2–4. Keep the CMD files together with the other files and the `sounds` folder.
+[ZIP without installation — v3.0.0](https://github.com/BrainMcLore/discord-teamspeak-sounds/releases/tag/v3.0.0): extract everything and open `Discord-Sound-Launcher.exe`. Add `-Portable` to the PowerShell command for this mode. Use `-Apply` to apply classic sounds without the launcher after fully quitting Discord.
 
 ## ↩️ Restore and check status
 
