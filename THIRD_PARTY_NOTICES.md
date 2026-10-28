@@ -10,6 +10,8 @@ The files retain TeamSpeak's ownership and applicable terms. This repository doe
 | --- | --- |
 | `sounds/mute.wav` | `mic_muted.wav` |
 | `sounds/unmute.wav` | `mic_activated.wav` |
+| `sounds/deafen.wav` | `sound_muted.wav` |
+| `sounds/undeafen.wav` | `sound_resumed.wav` |
 | `sounds/user_join.wav` | `neutral_switched_tocurrentchannel.wav` |
 | `sounds/user_leave.wav` | `neutral_switched_awayfromcurrentchannel.wav` |
 | `sounds/disconnect.wav` | `disconnected.wav` |

@@ -6,7 +6,7 @@ const path = require('path');
 function log(value) {
   try { fs.appendFileSync(path.join(__dirname, 'status.log'), new Date().toISOString() + ' ' + value + '\n'); } catch (_) {}
 }
-const sounds = Object.fromEntries(['mute','unmute','user_join','user_leave','disconnect'].map(name =>
+const sounds = Object.fromEntries(['mute','unmute','deafen','undeafen','user_join','user_leave','disconnect'].map(name =>
   [name, fs.readFileSync(path.join(__dirname, 'sounds', name + '.wav')).toString('base64')]));
 const assets = JSON.parse(fs.readFileSync(path.join(__dirname,'sound-assets.json'),'utf8'));
 function renderer(payload,assets) {
@@ -47,7 +47,7 @@ function attach(wc) {
   wc.on('console-message',(_event,...args)=>{
     const messages=args.filter(a=>typeof a==='string');
     if(_event?.message)messages.push(_event.message);
-    for(const message of new Set(messages))if(/^TS-SOUNDS-HIT:(mute|unmute|user_join|user_leave|disconnect)$/.test(message))log(message);
+    for(const message of new Set(messages))if(/^TS-SOUNDS-HIT:(mute|unmute|deafen|undeafen|user_join|user_leave|disconnect)$/.test(message))log(message);
   });
   async function apply(){
     if(wc.isDestroyed())return;

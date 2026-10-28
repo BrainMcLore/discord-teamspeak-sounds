@@ -28,11 +28,13 @@ After a Discord update, repeat steps 2–4. Keep the CMD files together with the
 | --- | --- |
 | Mute microphone | `mic_muted.wav` |
 | Unmute microphone | `mic_activated.wav` |
+| Deafen using the headphones button | `sound_muted.wav` — Sound muted |
+| Undeafen using the headphones button | `sound_resumed.wav` — Sound resumed |
 | Connect / participant joins | `neutral_switched_tocurrentchannel.wav` |
 | Participant leaves | `neutral_switched_awayfromcurrentchannel.wav` |
 | Disconnect yourself | `disconnected.wav` |
 
-Discord uses the same sound for your own connection and another participant joining. Standard, Halloween, and winter resource variants are supported: 15 addresses in total. The corresponding sounds must be enabled in Discord's notification settings.
+Discord uses the same sound for your own connection and another participant joining. Standard, Halloween, and winter resource variants are supported: 21 addresses in total. The corresponding sounds must be enabled in Discord's notification settings.
 
 ## How it works
 
@@ -45,6 +47,8 @@ When Discord starts, the patch replaces requests for the specified audio resourc
 The CMD files allow PowerShell script execution only for the launched process; they do not permanently change Windows execution policy. Administrator rights are usually unnecessary. Restoring disables the patch while leaving the backup and inactive files next to the loader.
 
 ## Compatibility and verification
+
+For the headphones button, exact WAV replacement and standard and seasonal addresses have been verified. Handler checks cover all 21 addresses. A real button press with this new version has not been separately tested.
 
 Tested with Discord **1.0.9265** on Windows on October 28, 2026:
 

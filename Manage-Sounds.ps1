@@ -45,7 +45,7 @@ try {
   if(!$web.Success){throw 'Public web bundle not found'}
   $bundle=(Invoke-WebRequest ('https://discord.com'+$web.Groups[1].Value) -UseBasicParsing -TimeoutSec 30).Content
   $found=0
-  foreach($name in @('mute','unmute','user_join','user_leave','disconnect')){
+  foreach($name in @('mute','unmute','deafen','undeafen','user_join','user_leave','disconnect')){
    $baseFound=$false
    foreach($prefix in @('','halloween_','winter_')){
     $id=[regex]::Match($bundle,'"\./'+$prefix+$name+'\.mp3":"(\d+)"')
@@ -70,7 +70,7 @@ try {
  New-Item -ItemType Directory -Path (Join-Path $dest 'sounds') -Force|Out-Null
  Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'teamspeak-sounds.js') -Destination (Join-Path $dest 'teamspeak-sounds.js') -Force
  [IO.File]::WriteAllText((Join-Path $dest 'sound-assets.json'),($assetMap|ConvertTo-Json),$utf8)
- foreach($name in @('mute','unmute','user_join','user_leave','disconnect')){
+ foreach($name in @('mute','unmute','deafen','undeafen','user_join','user_leave','disconnect')){
   $source=Join-Path $PSScriptRoot "sounds\$name.wav"
   if(!(Test-Path -LiteralPath $source)){throw "Missing sound: $name"}
   Copy-Item -LiteralPath $source -Destination (Join-Path $dest "sounds\$name.wav") -Force
