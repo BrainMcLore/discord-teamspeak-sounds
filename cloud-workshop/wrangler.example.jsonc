@@ -1,0 +1,21 @@
+{
+  "name": "your-workshop",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-28",
+  "workers_dev": true,
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "your-workshop",
+      "database_id": "YOUR_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "MAX_STORAGE_BYTES": "536870912",
+    "MAX_USER_BYTES": "67108864",
+    "GITHUB_CLIENT_ID": "YOUR_GITHUB_CLIENT_ID",
+    "FIREBASE_PROJECT_ID": "YOUR_FIREBASE_PROJECT_ID",
+    "FIREBASE_API_KEY": "YOUR_FIREBASE_API_KEY"
+  }
+}
